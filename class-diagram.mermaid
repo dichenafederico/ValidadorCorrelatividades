@@ -1,0 +1,29 @@
+classDiagram
+    class Alumno {
+        -Set~Materia~ materiasAprobadas
+        +Alumno()
+        +agregarMateriaAprobada(Materia)
+        +tieneAprobada(Materia) boolean
+    }
+    
+    class Materia {
+        -String nombre
+        -Set~Materia~ correlativas
+        +Materia(String)
+        +agregarCorrelativa(Materia)
+        +puedeCursar(Alumno) boolean
+        +getNombre() String
+    }
+    
+    class Inscripcion {
+        -Alumno alumno
+        -Set~Materia~ materias
+        +Inscripcion(Alumno)
+        +agregarMateria(Materia)
+        +aprobada() boolean
+    }
+    
+    Inscripcion --> "1" Alumno
+    Inscripcion --> "*" Materia
+    Alumno --> "*" Materia : materiasAprobadas
+    Materia --> "*" Materia : correlativas
